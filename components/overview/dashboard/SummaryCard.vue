@@ -5,7 +5,7 @@
         <img src="/svgs/icons/icon-more-dots.svg" alt="..." tabindex="0">
       </div>
 
-      <div class="card-summary d-flex justify-content-between align-items-center mt-4">
+      <div class="card-summary d-flex justify-content-between align-items-center mt-2 mt-lg-4">
         <div class="card-summary-text">
           <p class="card-figure" v-text="new Intl.NumberFormat().format(figure)" />
 
@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <img :src="changeStateImage(figureChange)" alt="📉📈" class="card-img col-5 m-auto p-0">
+        <img :src="changeStateImage(figureChange)" alt="📉📈" class="card-img m-auto p-0">
       </div>
     </div>
 </template>
@@ -108,6 +108,31 @@ export default {
 
 .card-img {
   width: 40%;
-  /* object-fit: contain; */
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1430px) {
+  .card {
+    width: 300px;
+    padding: 15px;
+    border-radius: 6px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+  .card-img {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .card:not(.card:first-of-type) {
+    margin-top: 20px;
+  }
 }
 </style>

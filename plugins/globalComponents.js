@@ -5,6 +5,7 @@ import FidiaSearch from '~/components/common/FidiaSearch.vue';
 import FidiaTable from '~/components/common/FidiaTable.vue';
 import FidiaCheckbox from '~/components/common/FidiaCheckbox.vue';
 import FidiaCheckboxAll from '~/components/common/FidiaCheckboxAll.vue';
+import SlideTransition from '~/components/transition/SlideTransition.vue';
 
 const components = {
   FidiaTab,
@@ -12,7 +13,8 @@ const components = {
   FidiaSearch,
   FidiaTable,
   FidiaCheckbox,
-  FidiaCheckboxAll
+  FidiaCheckboxAll,
+  SlideTransition
 };
 
 Object.entries(components).forEach(([name, component]) => {

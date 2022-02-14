@@ -1,28 +1,26 @@
 <template>
   <div>
-    <FidiaToolbar />
+    <FidiaToolbar class="bg-white" />
 
-    <div class="fidia-pad">
-      <section>
-        <div class="overview-panel row">
-          <div class="col-10">
-            <p class="welcome-message text-black">Welcome back, {{ username }}</p>
-            <p class="welcome-info text-gray-light-1">Track, manage and forecast your customers and orders.</p>
-          </div>
-
-          <div class="col-2 d-flex align-items-start">
-            <FidiaButton image-left img-url="/svgs/icons/icon-import.svg" button-name="Import" />
-            <FidiaButton image-left img-url="/svgs/icons/icon-plus.svg" button-name="Add" class="button-add" />
-          </div>
+    <section class="fidia-pad">
+      <div class="overview-panel d-flex flex-column flex-lg-row">
+        <div class="welcome-section">
+          <p class="welcome-message text-black">Welcome back, {{ username }}</p>
+          <p class="welcome-info text-gray-light-1">Track, manage and forecast your customers and orders.</p>
         </div>
-      </section>
 
-      <section class="d-flex justify-content-between my-5">
-        <SummaryCard v-for="card in summaryCards" :key="card.title" v-bind="card" class="d-flex justify-content-between" />
-      </section>
+        <div class="d-flex align-items-start mt-4 mt-lg-0 ml-lg-auto">
+          <FidiaButton image-left img-url="/svgs/icons/icon-import.svg" button-name="Import" />
+          <FidiaButton image-left img-url="/svgs/icons/icon-plus.svg" button-name="Add" class="button-add" />
+        </div>
+      </div>
+    </section>
 
-      <ActivityOverview />
-    </div>
+    <section class="fidia-pad d-flex flex-column flex-lg-row justify-content-between my-5">
+      <SummaryCard v-for="card in summaryCards" :key="card.title" v-bind="card" class="d-flex justify-content-between" />
+    </section>
+
+    <ActivityOverview />
   </div>
 </template>
 
@@ -94,5 +92,11 @@ export default {
 
 .welcome-message {
   font-size: 32px;
+}
+
+@media screen and (max-width: 768px) {
+  .welcome-message {
+    font-size: 24px;
+  }
 }
 </style>

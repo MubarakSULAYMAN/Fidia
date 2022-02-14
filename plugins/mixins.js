@@ -1,6 +1,13 @@
 import Vue from 'vue';
+import { mapGetters } from 'vuex';
 
 Vue.mixin({
+  computed: {
+    ...mapGetters({
+      isNavOpen: 'isNavOpen'
+    })
+  },
+
   methods: {
     parseStaticUrl(path = '/') {
       if (this.$config.staticPath) {

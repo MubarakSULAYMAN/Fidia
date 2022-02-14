@@ -1,106 +1,112 @@
 <template>
   <section>
-    <div class="d-flex justify-content-between">
+    <div class="fidia-pad d-flex flex-column d-lg-none">
+      <FidiaSearch :search-term="searchTerm" class="search-sm-md" @make-search="makeSearch" />
+      <FidiaButton image-left img-url="/svgs/icons/icon-more-line.svg" button-name="More filters" class="filter-more-sm-md" />
+    </div>
+    <div class="fidia-pad d-flex justify-content-between">
         <div class="d-flex">
           <FidiaButton image-right img-url="/svgs/icons/icon-cancle.svg" :button-name="timeFilter" class="time-filter text-purple mr-3" />
           <FidiaButton image-right img-url="/svgs/icons/icon-cancle.svg" :button-name="countryFilter" class="country-filter text-purple mr-3" />
-          <FidiaButton image-left img-url="/svgs/icons/icon-more-line.svg" button-name="More filters" />
+          <FidiaButton image-left img-url="/svgs/icons/icon-more-line.svg" button-name="More filters" class="hide-on-md-sm" />
         </div>
 
-        <FidiaSearch :search-term="searchTerm" @make-search="makeSearch" />
+        <FidiaSearch :search-term="searchTerm" class="hide-on-md-sm" @make-search="makeSearch" />
     </div>
 
-    <FidiaTable class="my-5 text-gray-light-1">
-      <template slot="thead">
-        <tr class="table-header text-gray-light-1">
-          <th>
-            <FidiaCheckboxAll
-              :rows="companies"
-              :selected-keys="selectedKeys"
-              checkbox-key="_id"
-              @set-selected-keys="setSelectedKeys"
-            />
-          </th>
-          <th>
-            <span>Company</span>
-            <img src="/svgs/icons/icon-arrow-down.svg" alt="↓" class="ml-1">
-          </th>
-          <th>License use</th>
-          <th>Status</th>
-          <th>Users</th>
-          <th>About</th>
-          <th></th>
-        </tr>
-      </template>
+    <div class="table-wrapper fidia-pad">
+      <FidiaTable class="my-4 my-lg-5 text-gray-light-1">
+        <template slot="thead">
+          <tr class="table-header text-gray-light-1">
+            <th>
+              <FidiaCheckboxAll
+                :rows="companies"
+                :selected-keys="selectedKeys"
+                checkbox-key="_id"
+                @set-selected-keys="setSelectedKeys"
+              />
+            </th>
+            <th>
+              <span>Company</span>
+              <img src="/svgs/icons/icon-arrow-down.svg" alt="↓" class="ml-1">
+            </th>
+            <th>License use</th>
+            <th>Status</th>
+            <th>Users</th>
+            <th>About</th>
+            <th></th>
+          </tr>
+        </template>
 
-      <template slot="tbody">
-        <tr v-for="company in companies" :key="company.name" class="text-black">
-          <td>
-            <FidiaCheckbox
-              :checkbox-key="company.name"
-              :selected-keys="selectedKeys"
-              @click.stop="checkRow"
-            />
-          </td>
+        <template slot="tbody">
+          <tr v-for="company in companies" :key="company.name" class="text-black">
+            <td>
+              <FidiaCheckbox
+                :checkbox-key="company.name"
+                :selected-keys="selectedKeys"
+                @click.stop="checkRow"
+              />
+            </td>
 
-          <td>
-            <div class="d-flex align-items-center">
-              <img :src="parseStaticUrl(company.logo)" :alt="company.name" class="company-logo mx-2">
-              <div class="d-flex flex-column">
-                <span v-text="company.name" />
-                <a :href="`https://${company.url}`" target="_blank" rel="noopener noreferrer" class="text-gray-light-1" v-text="company.url" />
+            <td>
+              <div class="d-flex align-items-center">
+                <img :src="parseStaticUrl(company.logo)" :alt="company.name" class="company-logo mx-2">
+                <div class="d-flex flex-column">
+                  <span v-text="company.name" />
+                  <a :href="`https://${company.url}`" target="_blank" rel="noopener noreferrer" class="text-gray-light-1" v-text="company.url" />
+                </div>
               </div>
-            </div>
-          </td>
+            </td>
 
-          <td>
-            <div class="progress-bar-wrapper">
-              <div class="progress-bar" :style="{ width: company.licenceUse + '%' }"></div>
-            </div>
-          </td>
-
-          <td>
-            <span :class="[statusStyle(company.status), 'company-status']" v-text="company.status"/>
-          </td>
-
-          <td>
-            <div class="d-flex">
-              <div v-for="(user, index) in company.users.slice(0, 5)" :key="index" class="img-wrapper" :title="user.name">
-                <img :src="parseStaticUrl(user.imgUrl)" alt="">
+            <td>
+              <div class="progress-bar-wrapper">
+                <div class="progress-bar" :style="{ width: company.licenceUse + '%' }"></div>
               </div>
-              <div v-if="company.users.length > 5" class="img-text-wrapper" v-text="`+${company.users.length - 5}`" />
-            </div>
-          </td>
+            </td>
 
-          <td>
-            <div class="d-flex flex-column">
-              <span v-text="company.aboutTitle" />
-              <span class="about-description text-gray-light-1" v-text="company.aboutDescription" />
-            </div>
-          </td>
+            <td>
+              <span :class="[statusStyle(company.status), 'company-status']" v-text="company.status"/>
+            </td>
 
-          <td>
-            <div class="d-flex justify-content-between">
-              <img src="/svgs/icons/icon-delete.svg" alt="🗑" tabindex="0">
-              <img src="/svgs/icons/icon-edit.svg" alt="🖊" tabindex="0">
-            </div>
-          </td>
-        </tr>
-
-        <tr class="table-toolbar">
-          <td colspan="7">
-            <div class="d-flex justify-content-between align-items-center">
+            <td>
               <div class="d-flex">
-                <FidiaButton button-name="Previous" />
-                <FidiaButton button-name="Next" class="ml-4" />
+                <div v-for="(user, index) in company.users.slice(0, 5)" :key="index" class="img-wrapper" :title="user.name">
+                  <img :src="parseStaticUrl(user.imgUrl)" alt="">
+                </div>
+                <div v-if="company.users.length > 5" class="img-text-wrapper" v-text="`+${company.users.length - 5}`" />
               </div>
+            </td>
 
-              <span>Page 1 of 10</span>
-            </div>
-          </td>
-        </tr>
-      </template>
-    </FidiaTable>
+            <td>
+              <div class="d-flex flex-column">
+                <span v-text="company.aboutTitle" />
+                <span class="about-description text-gray-light-1" v-text="company.aboutDescription" />
+              </div>
+            </td>
+
+            <td>
+              <div class="table-options d-flex justify-content-between">
+                <img src="/svgs/icons/icon-delete.svg" alt="🗑" tabindex="0">
+                <img src="/svgs/icons/icon-edit.svg" alt="🖊" tabindex="0">
+              </div>
+            </td>
+          </tr>
+
+          <tr class="table-toolbar">
+            <td colspan="7">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex">
+                  <FidiaButton button-name="Previous" />
+                  <FidiaButton button-name="Next" class="ml-4" />
+                </div>
+
+                <span>Page 1 of 10</span>
+              </div>
+            </td>
+          </tr>
+        </template>
+      </FidiaTable>
+    </div>
   </section>
 </template>
 
@@ -322,5 +328,48 @@ td:nth-child(7) {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .hide-on-md-sm {
+    display: none !important;
+  }
+
+  .filter-more-sm-md {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px 0;
+  }
+
+  .search-sm-md,
+  .filter-more-sm-md {
+    width: 100%;
+  }
+
+  .table-wrapper.fidia-pad {
+    width: 100vw;
+    padding: 0;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    padding: 10px 5px;
+  }
+
+  th:first-of-type,
+  td:first-of-type {
+    padding-left: 15px;
+  }
+
+  th:last-of-type,
+  td:last-of-type {
+    padding-right: 15px;
+  }
+
+  .table-options img:not(img:first-of-type) {
+    margin-left: 10px;
+  }
 }
 </style>

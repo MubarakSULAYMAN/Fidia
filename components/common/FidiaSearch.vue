@@ -45,7 +45,7 @@ export default {
 <style scoped>
 .search-overview {
   width: 280px;
-  /* height: 34px; */
+  height: 34px;
   border: 1px solid var(--fidia-gray-light-2);
 }
 

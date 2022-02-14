@@ -34,6 +34,7 @@ export default {
 
 <style scoped>
 .fidia-button {
+  height: 34px;
   border: 1px solid var(--fidia-gray-light-2);
   border-radius: 8px;
   text-decoration: none;

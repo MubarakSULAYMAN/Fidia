@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <FidiaHeaderNav />
+    <FidiaHeaderNav class="bg-white" />
 
     <Nuxt />
   </div>

@@ -1,5 +1,9 @@
 <template>
-  <nav class="toolbar-area fidia-pad d-flex justify-content-between align-items-center">
+  <nav
+    :class="[
+    isNavOpen ? 'd-flex' : 'd-none',
+    'toolbar-area fidia-pad d-lg-flex flex-column flex-lg-row justify-content-between align-items-center'
+  ]">
     <div>
       <FidiaTab v-for="(tab, index) in tabItems" :key="index" :tab="tab" :class="{ 'active-route': activeRoute(tab.address) }" />
     </div>

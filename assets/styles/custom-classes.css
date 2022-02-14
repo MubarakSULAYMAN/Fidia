@@ -8,6 +8,10 @@
   background-color: transparent;
 }
 
+.bg-white {
+  background-color: white;
+}
+
 .bg-fidia-purple {
   background-color: var(--fidia-purple);
 }
@@ -28,4 +32,25 @@
 .active-route {
   background-color: var(--fidia-gray-fade-3);
   text-decoration: none;
+}
+
+@media screen and (min-width: 2560px) {
+  .fidia-pad {
+    padding-left: 500px;
+    padding-right: 500px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .fidia-pad {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .fidia-pad {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

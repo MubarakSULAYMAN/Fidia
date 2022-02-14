@@ -2,7 +2,7 @@
   <div class="checkbox-wrapper m-auto">
     <input
       id="all"
-      :checked="selectedAllKeys === true"
+      :checked="selectedAllKeys"
       type="checkbox"
       @click="checkAllRows">
     <label for="all"></label>
