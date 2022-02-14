@@ -1,0 +1,27 @@
+.text-purple {
+  color: var(--fidia-purple);
+}
+
+.text-red {
+  color: var(--fidia-red);
+}
+
+.text-green {
+  color: var(--fidia-green);
+}
+
+.text-black {
+  color: black;
+}
+
+.text-gray {
+  color: var(--fidia-gray);
+}
+
+.text-gray-light-1 {
+  color: var(--fidia-gray-light-1);
+}
+
+.text-gray-light-1 {
+  color: var(--fidia-gray-light-1);
+}

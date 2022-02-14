@@ -1,0 +1,31 @@
+@import url('assets/styles/typography.css');
+
+.border-none {
+  border-color: transparent;
+}
+
+.bg-none {
+  background-color: transparent;
+}
+
+.bg-fidia-purple {
+  background-color: var(--fidia-purple);
+}
+
+.bg-fidia-purple-fade {
+  background-color: var(--fidia-purple-fade);
+}
+
+.fidia-pad {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.fidia-shadow {
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+}
+
+.active-route {
+  background-color: var(--fidia-gray-fade-3);
+  text-decoration: none;
+}

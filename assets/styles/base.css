@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+@import url('assets/styles/custom-classes.css');
+
+:root {
+  --fidia-black: #101828;
+  --fidia-gray: #344054;
+  --fidia-gray-light-1: #667085;
+  --fidia-gray-light-2: #D0D5DD;
+  --fidia-gray-fade-1: #EAECF0;
+  --fidia-gray-fade-2: #F2F4F7;
+  --fidia-gray-fade-3: #F9FAFB;
+  --fidia-purple: #6941C6;
+  --fidia-purple-light: #7F56D9;
+  --fidia-purple-fade: #F9F5FF;
+  --fidia-green: #027A48;
+  --fidia-green-fade: #ECFDF3;
+  --fidia-red: #B42318;
+}
+
+body,
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
+  color: var(--fidia-black);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus:not(:-moz-focusring) {
+  outline: none;
+}
+
+[tabindex] {
+  cursor: pointer;
+}
