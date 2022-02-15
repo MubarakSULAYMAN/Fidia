@@ -15,7 +15,7 @@
     </div>
 
     <div class="table-wrapper fidia-pad">
-      <FidiaTable class="my-4 my-lg-5 text-gray-light-1">
+      <FidiaTable class="my-4 my-lg-5 text-gray-light-1"  :current-page="currentPage" :total-pages="totalPages">
         <template slot="thead">
           <tr class="table-header text-gray-light-1">
             <th>
@@ -99,7 +99,7 @@
                   <FidiaButton button-name="Next" class="ml-4" />
                 </div>
 
-                <span>Page 1 of 10</span>
+                <span>Page {{ currentPage }} of {{ totalPages }}</span>
               </div>
             </td>
           </tr>
@@ -121,7 +121,9 @@ export default {
       selectedCountries: ['US', 'AU', 'UK', 'CA', 'GR', 'NG'],
       searchTerm: '',
       companies,
-      selectedKeys: []
+      selectedKeys: [],
+      currentPage: 1,
+      totalPages: 10
     };
   },
 
@@ -357,6 +359,10 @@ td:nth-child(7) {
 
   .table-options img:not(img:first-of-type) {
     margin-left: 10px;
+  }
+
+  .table-toolbar {
+    display: none;
   }
 }
 </style>

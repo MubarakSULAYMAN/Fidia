@@ -1,19 +1,41 @@
 <template>
-  <div class="fidia-table">
-    <table>
-      <thead>
-        <slot name="thead" />
-      </thead>
-      <tbody>
-        <slot name="tbody" />
-      </tbody>
-    </table>
+  <div>
+    <div class="fidia-table">
+      <table>
+        <thead>
+          <slot name="thead" />
+        </thead>
+        <tbody>
+          <slot name="tbody" />
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fidia-pad">
+      <div class="table-toolbar fidia-pad d-flex justify-content-between mt-4 py-2">
+        <img src="/svgs/icons/icon-arrow-left.svg" alt="←" tabindex="0">
+
+        <span class="d-lg-none">Page {{ currentPage }} of {{ totalPages }}</span>
+
+        <img src="/svgs/icons/icon-arrow-right.svg" alt="→" tabindex="0">
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    currentPage: {
+      type: Number,
+      default: 1
+    },
 
+    totalPages: {
+      type: Number,
+      default: 1
+    },
+  }
 };
 </script>
 
@@ -29,6 +51,11 @@ export default {
   .fidia-table {
     width: fit-content;
     border-radius: 0;
+  }
+
+  .table-toolbar {
+    border-top: 1px solid var(--fidia-gray-fade-1);
+    background-color: transparent !important;
   }
 }
 </style>
