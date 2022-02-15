@@ -11,7 +11,7 @@
       </table>
     </div>
 
-    <div class="fidia-pad">
+    <div class="fidia-pad d-block d-lg-none">
       <div class="table-toolbar fidia-pad d-flex justify-content-between mt-4 py-2">
         <img src="/svgs/icons/icon-arrow-left.svg" alt="←" tabindex="0">
 
