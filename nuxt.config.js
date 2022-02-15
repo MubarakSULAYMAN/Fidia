@@ -1,7 +1,6 @@
 export default {
   generate: {
     fallback: true,
-    routes: ['']
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head

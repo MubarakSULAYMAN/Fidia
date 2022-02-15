@@ -1,14 +1,16 @@
 <template>
   <div>
-    <div class="fidia-table">
-      <table>
-        <thead>
-          <slot name="thead" />
-        </thead>
-        <tbody>
-          <slot name="tbody" />
-        </tbody>
-      </table>
+    <div class="table-wrapper fidia-pad">
+      <div class="fidia-table">
+        <table>
+          <thead>
+            <slot name="thead" />
+          </thead>
+          <tbody>
+            <slot name="tbody" />
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="fidia-pad d-block d-lg-none">
@@ -48,6 +50,12 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
+  .table-wrapper.fidia-pad {
+    width: 100vw;
+    padding: 0;
+    overflow-x: auto;
+  }
+
   .fidia-table {
     width: fit-content;
     border-radius: 0;

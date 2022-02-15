@@ -14,98 +14,96 @@
         <FidiaSearch :search-term="searchTerm" class="hide-on-md-sm" @make-search="makeSearch" />
     </div>
 
-    <div class="table-wrapper fidia-pad">
-      <FidiaTable class="my-4 my-lg-5 text-gray-light-1"  :current-page="currentPage" :total-pages="totalPages">
-        <template slot="thead">
-          <tr class="table-header text-gray-light-1">
-            <th>
-              <FidiaCheckboxAll
-                :rows="companies"
-                :selected-keys="selectedKeys"
-                checkbox-key="_id"
-                @set-selected-keys="setSelectedKeys"
-              />
-            </th>
-            <th>
-              <span>Company</span>
-              <img src="/svgs/icons/icon-arrow-down.svg" alt="↓" class="ml-1">
-            </th>
-            <th>License use</th>
-            <th>Status</th>
-            <th>Users</th>
-            <th>About</th>
-            <th></th>
-          </tr>
-        </template>
+    <FidiaTable class="my-4 my-lg-5 text-gray-light-1"  :current-page="currentPage" :total-pages="totalPages">
+      <template slot="thead">
+        <tr class="table-header text-gray-light-1">
+          <th>
+            <FidiaCheckboxAll
+              :rows="companies"
+              :selected-keys="selectedKeys"
+              checkbox-key="_id"
+              @set-selected-keys="setSelectedKeys"
+            />
+          </th>
+          <th>
+            <span>Company</span>
+            <img src="/svgs/icons/icon-arrow-down.svg" alt="↓" class="ml-1">
+          </th>
+          <th>License use</th>
+          <th>Status</th>
+          <th>Users</th>
+          <th>About</th>
+          <th></th>
+        </tr>
+      </template>
 
-        <template slot="tbody">
-          <tr v-for="company in companies" :key="company.name" class="text-black">
-            <td>
-              <FidiaCheckbox
-                :checkbox-key="company.name"
-                :selected-keys="selectedKeys"
-              />
-            </td>
+      <template slot="tbody">
+        <tr v-for="company in companies" :key="company.name" class="text-black">
+          <td>
+            <FidiaCheckbox
+              :checkbox-key="company.name"
+              :selected-keys="selectedKeys"
+            />
+          </td>
 
-            <td>
-              <div class="d-flex align-items-center">
-                <img :src="parseStaticUrl(company.logo)" :alt="company.name" class="company-logo mx-2">
-                <div class="d-flex flex-column">
-                  <span v-text="company.name" />
-                  <a :href="`https://${company.url}`" target="_blank" rel="noopener noreferrer" class="text-gray-light-1" v-text="company.url" />
-                </div>
-              </div>
-            </td>
-
-            <td>
-              <div class="progress-bar-wrapper">
-                <div class="progress-bar" :style="{ width: company.licenceUse + '%' }"></div>
-              </div>
-            </td>
-
-            <td>
-              <span :class="[statusStyle(company.status), 'company-status']" v-text="company.status"/>
-            </td>
-
-            <td>
-              <div class="d-flex">
-                <div v-for="(user, index) in company.users.slice(0, 5)" :key="index" class="img-wrapper" :title="user.name">
-                  <img :src="parseStaticUrl(user.imgUrl)" alt="">
-                </div>
-                <div v-if="company.users.length > 5" class="img-text-wrapper" v-text="`+${company.users.length - 5}`" />
-              </div>
-            </td>
-
-            <td>
+          <td>
+            <div class="d-flex align-items-center">
+              <img :src="parseStaticUrl(company.logo)" :alt="company.name" class="company-logo mx-2">
               <div class="d-flex flex-column">
-                <span v-text="company.aboutTitle" />
-                <span class="about-description text-gray-light-1" v-text="company.aboutDescription" />
+                <span v-text="company.name" />
+                <a :href="`https://${company.url}`" target="_blank" rel="noopener noreferrer" class="text-gray-light-1" v-text="company.url" />
               </div>
-            </td>
+            </div>
+          </td>
 
-            <td>
-              <div class="table-options d-flex justify-content-between">
-                <img src="/svgs/icons/icon-delete.svg" alt="🗑" tabindex="0">
-                <img src="/svgs/icons/icon-edit.svg" alt="🖊" tabindex="0">
+          <td>
+            <div class="progress-bar-wrapper">
+              <div class="progress-bar" :style="{ width: company.licenceUse + '%' }"></div>
+            </div>
+          </td>
+
+          <td>
+            <span :class="[statusStyle(company.status), 'company-status']" v-text="company.status"/>
+          </td>
+
+          <td>
+            <div class="d-flex">
+              <div v-for="(user, index) in company.users.slice(0, 5)" :key="index" class="img-wrapper" :title="user.name">
+                <img :src="parseStaticUrl(user.imgUrl)" alt="">
               </div>
-            </td>
-          </tr>
+              <div v-if="company.users.length > 5" class="img-text-wrapper" v-text="`+${company.users.length - 5}`" />
+            </div>
+          </td>
 
-          <tr class="table-toolbar">
-            <td colspan="7">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex">
-                  <FidiaButton button-name="Previous" />
-                  <FidiaButton button-name="Next" class="ml-4" />
-                </div>
+          <td>
+            <div class="d-flex flex-column">
+              <span v-text="company.aboutTitle" />
+              <span class="about-description text-gray-light-1" v-text="company.aboutDescription" />
+            </div>
+          </td>
 
-                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+          <td>
+            <div class="table-options d-flex justify-content-between">
+              <img src="/svgs/icons/icon-delete.svg" alt="🗑" tabindex="0">
+              <img src="/svgs/icons/icon-edit.svg" alt="🖊" tabindex="0">
+            </div>
+          </td>
+        </tr>
+
+        <tr class="table-toolbar">
+          <td colspan="7">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex">
+                <FidiaButton button-name="Previous" />
+                <FidiaButton button-name="Next" class="ml-4" />
               </div>
-            </td>
-          </tr>
-        </template>
-      </FidiaTable>
-    </div>
+
+              <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            </div>
+          </td>
+        </tr>
+      </template>
+    </FidiaTable>
   </section>
 </template>
 
@@ -266,7 +264,7 @@ td:nth-child(7) {
 }
 
 .progress-bar-wrapper {
-  width: 100%;
+  width: 100px;
   background-color: var(--fidia-purple-fade);
 }
 
@@ -313,6 +311,12 @@ td:nth-child(7) {
   margin-left: -8px;
 }
 
+.img-wrapper:hover,
+.img-text-wrapper:hover {
+  outline: 2px solid var(--fidia-purple);
+  z-index: 1;
+}
+
 .img-text-wrapper {
   display: flex;
   justify-content: center;
@@ -334,12 +338,6 @@ td:nth-child(7) {
   .search-sm-md,
   .filter-more-sm-md {
     width: 100%;
-  }
-
-  .table-wrapper.fidia-pad {
-    width: 100vw;
-    padding: 0;
-    overflow-x: auto;
   }
 
   th,
