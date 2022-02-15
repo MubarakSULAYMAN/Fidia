@@ -11,6 +11,8 @@
 
       <FidiaToolbar class="toolbar-mobile" />
 
+      <FidiaSearch :search-term="searchTerm" class="search-2 mt-2" @make-search="makeSearch" />
+
       <div class="d-flex justify-content-between align-items-center mt-2">
         <FidiaButton image-left img-url="/svgs/icons/icon-flash.svg" button-name="Upgrade now" />
 
@@ -19,8 +21,6 @@
         <FidiaSearch :search-term="searchTerm" class="search-1" @make-search="makeSearch" />
         <img src="/img/users/user-1.png" alt="User Avatar" title="User Avatar" class="user-avatar" tabindex="0">
       </div>
-
-      <FidiaSearch :search-term="searchTerm" class="search-2 mt-2" @make-search="makeSearch" />
     </nav>
   </div>
 </template>
