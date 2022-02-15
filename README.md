@@ -69,9 +69,6 @@ The following is a description of the folders in this project, and how they are 
 
 - **`components`**: Application reusable components files
 
-- **`store`**: Application state management folder (for vuex)
-  - **`modules`**: Application submodules for state management
-
 - **`layout`**: Application wrapper templates
 
 - **`pages`**: Application pages
@@ -83,7 +80,8 @@ The following is a description of the folders in this project, and how they are 
 
   - **`main.js`**: Main vue application entry file
 
-- **`store`**: Application state management
+- **`store`**: Application state management folder (for vuex)
+  - **`modules`**: Application submodules for state management
 
 **Development Content** - used to automate development & testing:
 
