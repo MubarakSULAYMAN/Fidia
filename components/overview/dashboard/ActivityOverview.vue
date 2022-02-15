@@ -44,7 +44,6 @@
               <FidiaCheckbox
                 :checkbox-key="company.name"
                 :selected-keys="selectedKeys"
-                @click.stop="checkRow"
               />
             </td>
 
@@ -167,18 +166,6 @@ export default {
     setSelectedKeys (keys) {
       this.selectedKeys = keys;
     },
-
-    checkRow (e) {
-      const { value } = e.target;
-      if (value) {
-        const foundIndex = this.selectedKeys.findIndex(x => x === value);
-        if (foundIndex !== -1) {
-          this.selectedKeys.splice(foundIndex, 1);
-          return;
-        }
-        this.selectedKeys.push(value);
-      }
-    }
   }
 };
 </script>

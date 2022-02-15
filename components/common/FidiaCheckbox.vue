@@ -3,9 +3,10 @@
     <input
       :id="checkboxKey"
       :value="checkboxKey"
-      :checked="selectedKeys.some((x) => x === checkboxKey)"
+      :checked="currentSelectedKeys.some((x) => x === checkboxKey)"
       type="checkbox"
-      class="form-checkbox">
+      class="form-checkbox"
+      @click.stop="checkRow">
     <label :for="checkboxKey"></label>
   </div>
 </template>
@@ -22,6 +23,26 @@ export default {
       default: () => []
     }
   },
+
+  data () {
+    return {
+      currentSelectedKeys: this.selectedKeys
+    };
+  },
+
+  methods: {
+    checkRow (e) {
+      const { value } = e.target;
+      if (value) {
+        const foundIndex = this.currentSelectedKeys.findIndex(x => x === value);
+        if (foundIndex !== -1) {
+          this.currentSelectedKeys.splice(foundIndex, 1);
+          return;
+        }
+        this.currentSelectedKeys.push(value);
+      }
+    }
+  }
 };
 </script>
 
