@@ -277,7 +277,7 @@ td:nth-child(7) {
 }
 
 .progress-bar-wrapper {
-  width: 100px;
+  width: 100%;
   background-color: var(--fidia-purple-fade);
 }
 

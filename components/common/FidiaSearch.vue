@@ -69,4 +69,16 @@ export default {
   border-color: var(--fidia-purple);
   transition: ease 0.35s;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+  .search-overview {
+    width: 260px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .search-overview {
+    width: 100%;
+  }
+}
 </style>

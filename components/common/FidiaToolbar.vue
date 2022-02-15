@@ -2,13 +2,13 @@
   <nav
     :class="[
     isNavOpen ? 'd-flex' : 'd-none',
-    'toolbar-area fidia-pad d-lg-flex flex-column flex-lg-row justify-content-between align-items-center'
+    'toolbar-area fidia-pad d-lg-flex flex-row justify-content-start justify-content-lg-between align-items-center align-items-center'
   ]">
-    <div>
+    <div class="d-flex flex-column flex-md-row">
       <FidiaTab v-for="(tab, index) in tabItems" :key="index" :tab="tab" :class="{ 'active-route': activeRoute(tab.address) }" />
     </div>
 
-    <FidiaSearch :search-term="searchTerm" @make-search="makeSearch" />
+    <FidiaSearch :search-term="searchTerm" class="search-mobile" @make-search="makeSearch" />
   </nav>
 </template>
 
@@ -64,5 +64,21 @@ export default {
 .toolbar-area {
   height: 60px;
   border-bottom: 1px solid var(--fidia-gray-fade-1);
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+  .toolbar-area {
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-mobile {
+    display: none !important;
+  }
+
+  .toolbar-area {
+    height: fit-content;
+  }
 }
 </style>

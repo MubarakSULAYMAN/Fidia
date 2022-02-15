@@ -15,7 +15,7 @@ export const getters = {
 };
 
 export const actions = {
-  updateNavState({ commit, state }) {
+  updateNavState ({ commit, state }) {
     commit('SET_NAV_STATE');
   }
 };
